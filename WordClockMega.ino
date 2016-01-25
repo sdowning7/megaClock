@@ -1,4 +1,6 @@
 // Display output pin assignments
+
+int ITIS = 10;
 int MTEN  = 11;
 int HALF  = 12;
 int QUARTER = 13;
@@ -42,6 +44,7 @@ int HourButtonPin = 3;
 void setup()
 {
   // initialize the appropriate pins as outputs:
+  pinMode(ITIS, OUTPUT);
   pinMode(MTEN, OUTPUT);
   pinMode(HALF, OUTPUT);
   pinMode(QUARTER, OUTPUT);
@@ -54,7 +57,7 @@ void setup()
   pinMode(TWO,OUTPUT);
   pinMode(THREE,OUTPUT);
   pinMode(FOUR,OUTPUT);
-  pinMode(FIVE,OUTPUT);
+  pinMode(HFIVE,OUTPUT);
   pinMode(SIX,OUTPUT);
   pinMode(SEVEN,OUTPUT);
   pinMode(EIGHT,OUTPUT);
@@ -91,6 +94,7 @@ void setup()
 
 
 void ledsoff(void) {
+  digitalWrite(ITIS, LOW);
   digitalWrite(MTEN, LOW);
   digitalWrite(HALF, LOW);
   digitalWrite(QUARTER, LOW);
@@ -103,7 +107,7 @@ void ledsoff(void) {
   digitalWrite(TWO,LOW);
   digitalWrite(THREE,LOW);
   digitalWrite(FOUR,LOW);
-  digitalWrite(FIVE,LOW);
+  digitalWrite(HFIVE,LOW);
   digitalWrite(SIX,LOW);
   digitalWrite(SEVEN,LOW);
   digitalWrite(EIGHT,LOW);
@@ -115,7 +119,7 @@ void ledsoff(void) {
   
 }
 
-void WriteLEDs(void) {
+/*void WriteLEDs(void) {
   // Now we write the actual values to the hardware
   shiftOut(LEDDataPin, LEDClockPin, MSBFIRST, );
   shiftOut(LEDDataPin, LEDClockPin, MSBFIRST, );
@@ -125,11 +129,14 @@ void WriteLEDs(void) {
   digitalWrite(LEDStrobePin, LOW);
 
 
-}
+}*/
 
 void selftest(void) {
   Serial.println("TEST");
 
+  digitalWrite(ITIS, HIGH);
+  delay(500);
+  digitalWrite(ITIS, LOW);
   digitalWrite(MTEN, HIGH);
   delay(500);
   digitalWrite(MTEN, LOW);
@@ -166,9 +173,9 @@ void selftest(void) {
   digitalWrite(FOUR,HIGH);
   delay(500);
   digitalWrite(FOUR, LOW);
-  digitalWrite(FIVE,HIGH);
+  digitalWrite(HFIVE,HIGH);
   delay(500);
-  digitalWrite(FIVE, LOW);
+  digitalWrite(HFIVE, LOW);
   digitalWrite(SIX,HIGH);
   delay(500);
   digitalWrite(SIX, LOW);
@@ -204,60 +211,61 @@ void displaytime(void) {
   ledsoff();
   
   Serial.println("It is ");
+  digitalWrite(ITIS, HIGH);
 
   // now we display the appropriate minute counter
   if ((minute > 4) && (minute < 10)) {
-    MFIVE;
-    MINUTES;
+    digitalWrite(MFIVE, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Five Minutes ");
   }
   if ((minute > 9) && (minute < 15)) {
-    MTEN;
-    MINUTES;
+    digitalWrite(MTEN, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Ten Minutes ");
   }
   if ((minute > 14) && (minute < 20)) {
-    QUARTER;
+    digitalWrite(QUARTER, HIGH);
     Serial.println("Quarter ");
   }
   if ((minute > 19) && (minute < 25)) {
-    TWENTY;
-    MINUTES;
+    digitalWrite(TWENTY, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Twenty Minutes ");
   }
   if ((minute > 24) && (minute < 30)) {
-    TWENTY;
-    MFIVE;
-    MINUTES;
+    digitalWrite(TWENTY, HIGH);
+    digitalWrite(MFIVE, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Twenty Five Minutes ");
   }
   if ((minute > 29) && (minute < 35)) {
-    HALF;
+    digitalWrite(HALF, HIGH);
     Serial.println("Half ");
   }
   if ((minute > 34) && (minute < 40)) {
-    TWENTY;
-    MFIVE;
-    MINUTES;
+    digitalWrite(TWENTY, HIGH);
+    digitalWrite(MFIVE, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Twenty Five Minutes ");
   }
   if ((minute > 39) && (minute < 45)) {
-    TWENTY;
-    MINUTES;
+    digitalWrite(TWENTY, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Twenty Minutes ");
   }
   if ((minute > 44) && (minute < 50)) {
-    QUARTER;
+    digitalWrite(QUARTER, HIGH);
     Serial.println("Quarter ");
   }
   if ((minute > 49) && (minute < 55)) {
-    MTEN;
-    MINUTES;
+    digitalWrite(MTEN, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Ten Minutes ");
   }
   if (minute > 54) {
-    MFIVE;
-    MINUTES;
+    digitalWrite(MFIVE, HIGH);
+    digitalWrite(MINUTES, HIGH);
     Serial.println("Five Minutes ");
   }
 
@@ -267,108 +275,108 @@ void displaytime(void) {
   {
     switch (hour) {
       case 1:
-        ONE;
+        digitalWrite(ONE, HIGH);
         Serial.println("One ");
         break;
       case 2:
-        TWO;
+        digitalWrite(TWO, HIGH);
         Serial.println("Two ");
         break;
       case 3:
-        THREE;
+        digitalWrite(THREE, HIGH);
         Serial.println("Three ");
         break;
       case 4:
-        FOUR;
+        digitalWrite(FOUR, HIGH);
         Serial.println("Four ");
         break;
       case 5:
-        HFIVE;
+        digitalWrite(HFIVE, HIGH);
         Serial.println("Five ");
         break;
       case 6:
-        SIX;
+        digitalWrite(SIX, HIGH);
         Serial.println("Six ");
         break;
       case 7:
-        SEVEN;
+        digitalWrite(SEVEN, HIGH);
         Serial.println("Seven ");
         break;
       case 8:
-        EIGHT;
+        digitalWrite(EIGHT, HIGH);
         Serial.println("Eight ");
         break;
       case 9:
-        NINE;
+        digitalWrite(NINE, HIGH);
         Serial.println("Nine ");
         break;
       case 10:
-        HTEN;
+        digitalWrite(HTEN, HIGH);
         Serial.println("Ten ");
         break;
       case 11:
-        ELEVEN;
+        digitalWrite(ELEVEN, HIGH);
         Serial.println("Eleven ");
         break;
       case 12:
-        TWELVE;
+        digitalWrite(TWELVE, HIGH);
         Serial.println("Twelve ");
         break;
     }
-    OCLOCK;
+    digitalWrite(OCLOCK, HIGH);
     Serial.println("O'Clock");
   }
   else if ((minute < 35) && (minute > 4))
   {
-    PAST;
+    digitalWrite(PAST, HIGH);
     Serial.println("Past ");
     switch (hour) {
       case 1:
-        ONE;
+        digitalWrite(ONE, HIGH);
         Serial.println("One ");
         break;
       case 2:
-        TWO;
+        digitalWrite(TWO, HIGH);
         Serial.println("Two ");
         break;
       case 3:
-        THREE;
+        digitalWrite(THREE, HIGH);
         Serial.println("Three ");
         break;
       case 4:
-        FOUR;
+        digitalWrite(FOUR, HIGH);
         Serial.println("Four ");
         break;
       case 5:
-        HFIVE;
+        digitalWrite(HFIVE, HIGH);
         Serial.println("Five ");
         break;
       case 6:
-        SIX;
+        digitalWrite(SIX, HIGH);
         Serial.println("Six ");
         break;
       case 7:
-        SEVEN;
+        digitalWrite(SEVEN, HIGH);
         Serial.println("Seven ");
         break;
       case 8:
-        EIGHT;
+        digitalWrite(EIGHT, HIGH);
         Serial.println("Eight ");
         break;
       case 9:
-        NINE;
+        digitalWrite(NINE, HIGH);
         Serial.println("Nine ");
         break;
       case 10:
-        HTEN;
+        digitalWrite(HTEN, HIGH);
         Serial.println("Ten ");
         break;
       case 11:
-        ELEVEN;
+        digitalWrite(ELEVEN, HIGH);
         Serial.println("Eleven ");
         break;
       case 12:
-        TWELVE;
+        digitalWrite(TWELVE, HIGH);
         Serial.println("Twelve ");
         break;
     }
@@ -377,55 +385,55 @@ void displaytime(void) {
   {
     // if we are greater than 34 minutes past the hour then display
     // the next hour, as we will be displaying a 'to' sign
-    TO;
+    digitalWrite(TO, HIGH);
     Serial.println("To ");
     switch (hour) {
       case 1:
-        TWO;
+        digitalWrite(TWO, HIGH);
         Serial.println("Two ");
         break;
       case 2:
-        THREE;
+        digitalWrite(THREE, HIGH);
         Serial.println("Three ");
         break;
       case 3:
-        FOUR;
+        digitalWrite(FOUR, HIGH);
         Serial.println("Four ");
         break;
       case 4:
-        HFIVE;
+        digitalWrite(HFIVE, HIGH);
         Serial.println("Five ");
         break;
       case 5:
-        SIX;
+        digitalWrite(SIX, HIGH);
         Serial.println("Six ");
         break;
       case 6:
-        SEVEN;
+        digitalWrite(SEVEN, HIGH);
         Serial.println("Seven ");
         break;
       case 7:
-        EIGHT;
+        digitalWrite(EIGHT, HIGH);
         Serial.println("Eight ");
         break;
       case 8:
-        NINE;
+        digitalWrite(NINE, HIGH);
         Serial.println("Nine ");
         break;
       case 9:
-        HTEN;
+        digitalWrite(HTEN, HIGH);
         Serial.println("Ten ");
         break;
       case 10:
-        ELEVEN;
+        digitalWrite(ELEVEN, HIGH);
         Serial.println("Eleven ");
         break;
       case 11:
-        TWELVE;
+        digitalWrite(TWELVE, HIGH);
         Serial.println("Twelve ");
         break;
       case 12:
-        ONE;
+        digitalWrite(ONE, HIGH);
         Serial.println("One ");
         break;
     }
@@ -433,7 +441,7 @@ void displaytime(void) {
 
 
 
-  WriteLEDs();
+  //WriteLEDs();
 
 }
 
@@ -466,7 +474,7 @@ void loop(void)
   //Uncomment the following line and comment the next one in order to
   //  enable dimming via a potentiometer connected to pin 0:
   //analogWrite(PWMPin, analogRead(1)/4);
-  analogWrite(PWMPin, 255);
+  //analogWrite(PWMPin, 255);
 
   // heart of the timer - keep looking at the millisecond timer on the Arduino
   // and increment the seconds counter every 1000 ms
