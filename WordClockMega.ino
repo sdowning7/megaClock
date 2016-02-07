@@ -1,29 +1,29 @@
 // Display output pin assignments
 
-int ITIS = 10;
-int MTEN  = 11;
-int HALF  = 12;
-int QUARTER = 13;
-int TWENTY  = 14;
-int MFIVE = 15;
-int MINUTES = 16;
-int PAST  = 17;
+int ITIS = 22;
+int MTEN  = 23;
+int HALF  = 24;
+int QUARTER = 25;
+int TWENTY  = 26;
+int MFIVE = 27;
+int MINUTES = 28;
+int PAST  = 29;
 
-int TO  = 20;
-int ONE = 21;
-int TWO = 22;
-int THREE = 23;
-int FOUR  = 24;
-int HFIVE = 25;
-int SIX = 26;
+int TO  = 30;
+int ONE = 31;
+int TWO = 32;
+int THREE = 33;
+int FOUR  = 34;
+int HFIVE = 35;
+int SIX = 36;
 
-int SEVEN = 27;
-int EIGHT = 28;
-int NINE  = 29;
-int HTEN  = 30;
-int ELEVEN  = 31;
-int TWELVE  = 32;
-int OCLOCK  = 33;
+int SEVEN = 37;
+int EIGHT = 38;
+int NINE  = 39;
+int HTEN  = 40;
+int ELEVEN  = 41;
+int TWELVE  = 42;
+int OCLOCK  = 43;
 
 
 int  hour = 9, minute = 30, second = 00;
